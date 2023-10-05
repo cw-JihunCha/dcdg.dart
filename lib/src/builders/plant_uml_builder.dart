@@ -26,8 +26,12 @@ class PlantUmlBuilder implements DiagramBuilder {
 
   @override
   void addField(FieldElement element) {
-    final visibilityPrefix = getVisibility(element);
-    final staticPrefix = element.isStatic ? '{static} ' : '';
+    final visibilityPrefix = element.isEnumConstant ? '' : getVisibility(element);
+    final staticPrefix = element.isEnumConstant
+        ? ''
+        : element.isStatic
+            ? '{static} '
+            : '';
     final name = element.name;
     final type = typeName(element);
     _lines.add('  $staticPrefix$visibilityPrefix$type $name');
