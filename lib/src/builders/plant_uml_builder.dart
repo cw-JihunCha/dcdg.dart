@@ -66,7 +66,11 @@ class PlantUmlBuilder implements DiagramBuilder {
   @override
   void beginClass(ClassElement element) {
     _currentClass = namespacedTypeName(element);
-    final decl = element.isAbstract ? 'abstract class' : 'class';
+    final decl = element.isAbstract
+        ? 'abstract class'
+        : element.isEnum
+            ? 'enum'
+            : 'class';
     _lines.add('$decl $_currentClass {');
   }
 
