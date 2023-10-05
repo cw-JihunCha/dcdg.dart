@@ -33,7 +33,7 @@ class PlantUmlBuilder implements DiagramBuilder {
             ? '{static} '
             : '';
     final name = element.name;
-    final type = typeName(element);
+    final type = element.isEnumConstant ? '' : typeName(element);
     _lines.add('  $staticPrefix$visibilityPrefix$type $name');
   }
 
